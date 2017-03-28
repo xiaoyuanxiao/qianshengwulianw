@@ -226,6 +226,8 @@ public class Image3DSwitchView extends ViewGroup {
     public void setCurrentImage(int currentImage) {
         mCurrentImage = currentImage;
         requestLayout();
+
+
     }
 
     /**

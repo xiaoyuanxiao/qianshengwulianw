@@ -1,14 +1,16 @@
 package com.qs.qswlw.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.qs.qswlw.R;
 import com.qs.qswlw.view.imageswitchview.Image3DSwitchView;
+import com.qs.qswlw.view.imageswitchview.Image3DView;
 
 /**
  * Created by 小羽 on 2017/3/22.
@@ -35,18 +37,19 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
         imageSwitchView.setCurrentImage(1);
-        ListView image1 = (ListView) findViewById(R.id.image1);
+        Image3DView image1 = (Image3DView) findViewById(R.id.image1);
         TextView textView = new TextView(this);
         textView.setText("全联盟让利金额排行榜");
         image1.addHeaderView(textView);
+        image1.setBColor(Color.parseColor("#fff000"));
         TextView textView2 = new TextView(this);
         textView2.setText("查看全部排名");
         image1.addFooterView(textView2);
-        ListView image2 = (ListView) findViewById(R.id.image2);
-        ListView image3 = (ListView) findViewById(R.id.image3);
-        ListView image4 = (ListView) findViewById(R.id.image4);
-        ListView image5 = (ListView) findViewById(R.id.image5);
-        ListView image6 = (ListView) findViewById(R.id.image6);
+        Image3DView image2 = (Image3DView) findViewById(R.id.image2);
+        Image3DView image3 = (Image3DView) findViewById(R.id.image3);
+        Image3DView image4 = (Image3DView) findViewById(R.id.image4);
+        Image3DView image5 = (Image3DView) findViewById(R.id.image5);
+        Image3DView image6 = (Image3DView) findViewById(R.id.image6);
         image1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
         image2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
         image3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
@@ -60,13 +63,15 @@ public class MainActivity extends BaseActivity {
         image2.addHeaderView(textView22);
 
 
-
         TextView textView3 = new TextView(this);
         textView3.setText("无敌低33333333333");
         image3.addHeaderView(textView3);
+        Bitmap bitmap2 = Bitmap.createBitmap(1, 1,
+                Bitmap.Config.ARGB_8888);
+        bitmap2.eraseColor(Color.parseColor("#00ff00"));
+        image2.setmBitmap(bitmap2);
 
-
-        TextView textView4= new TextView(this);
+        TextView textView4 = new TextView(this);
         textView4.setText("无敌低44444444444");
         image4.addHeaderView(textView4);
 

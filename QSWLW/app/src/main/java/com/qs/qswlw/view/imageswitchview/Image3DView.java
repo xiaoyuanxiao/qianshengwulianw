@@ -2,16 +2,14 @@ package com.qs.qswlw.view.imageswitchview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Camera;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ThumbnailUtils;
 import android.util.AttributeSet;
 import android.widget.ListView;
-
-import com.qs.qswlw.R;
 
 /**
  * 用于在Image3DSwitchView中显示3D图片。
@@ -27,7 +25,7 @@ public class Image3DView extends ListView {
      */
 
 
-    private static final float BASE_DEGREE = 50f;
+    private static final float BASE_DEGREE = 15f;
     /**
      * 旋转深度的基准值
      */
@@ -68,8 +66,6 @@ public class Image3DView extends ListView {
         super(context, attrs);
         mCamera = new Camera();
         mMaxtrix = new Matrix();
-
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.image3);
     }
 
 
@@ -268,7 +264,7 @@ public class Image3DView extends ListView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        canvas.drawBitmap(mBitmap, mMaxtrix, new Paint());
+
         if (isImageVisible()) {
             computeRotateData();
             mCamera.save();
@@ -278,6 +274,15 @@ public class Image3DView extends ListView {
             mCamera.restore();
             mMaxtrix.preTranslate(-mDx, -getHeight() / 2);
             mMaxtrix.postTranslate(mDx, getHeight() / 2);
+            if (mBitmap == null) {
+                mBitmap = Bitmap.createBitmap(getWidth(), getHeight(),
+                        Bitmap.Config.ARGB_8888);
+                mBitmap.eraseColor(color);
+            }
+            if (mBitmap != null && mBitmap.getWidth() != getWidth() && mBitmap.getHeight() != getHeight()) {
+                mBitmap = ThumbnailUtils.extractThumbnail(mBitmap, getWidth(), getHeight());
+            }
+            canvas.drawBitmap(mBitmap, mMaxtrix, new Paint());
             canvas.concat(mMaxtrix);
             for (int i = 0; i < getChildCount(); i++) {
                 drawChild(canvas, getChildAt(i), getDrawingTime());
@@ -287,6 +292,12 @@ public class Image3DView extends ListView {
     }
 
     public void setmBitmap(Bitmap bitmap) {
-        mBitmap = ThumbnailUtils.extractThumbnail(bitmap, getWidth(), getHeight());
+        this.mBitmap = bitmap;
+    }
+
+    int color = Color.parseColor("#FF0000");
+
+    public void setBColor(int color) {
+        this.color = color;
     }
 }
