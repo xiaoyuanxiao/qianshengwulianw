@@ -1,11 +1,13 @@
 package com.qs.qswlw.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.qs.qswlw.R;
@@ -17,6 +19,10 @@ import com.qs.qswlw.R;
 public class SettingActivity extends BaseActivity {
 
     private GridView gv_setting;
+    private RadioButton rb_main_mall;
+    private RadioButton rb_main_beans;
+    private RadioButton rb_main_funtime;
+    private RadioButton rb_main_exit;
 
     @Override
     Object initView() {
@@ -26,6 +32,10 @@ public class SettingActivity extends BaseActivity {
     @Override
     void initfindviewByid() {
         gv_setting = (GridView) findViewById(R.id.gv_setting);
+        rb_main_mall = (RadioButton) findViewById(R.id.rb_main_mall);
+        rb_main_beans = (RadioButton) findViewById(R.id.rb_main_beans);
+        rb_main_funtime = (RadioButton) findViewById(R.id.rb_main_funtime);
+        rb_main_exit = (RadioButton) findViewById(R.id.rb_main_exit);
         gv_setting.setAdapter(new MysettingAdapter());
 
     }
@@ -33,6 +43,7 @@ public class SettingActivity extends BaseActivity {
     @Override
     void setOnclick() {
         gv_setting.setOnItemClickListener(new ItemClickListener());
+        rb_main_mall.setOnClickListener(this);
 
     }
 
@@ -66,6 +77,7 @@ public class SettingActivity extends BaseActivity {
                 case 11:
                     break;
                 case 12:
+                    startActivity(new Intent(SettingActivity.this,ReceivingAddressActivity.class));
                     break;
             }
         }
@@ -74,7 +86,11 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.rb_main_mall:
+                startActivity(new Intent(SettingActivity.this, ReceivingAddressActivity.class));
+                break;
+        }
     }
 
 

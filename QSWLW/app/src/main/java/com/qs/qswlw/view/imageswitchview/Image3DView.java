@@ -25,7 +25,7 @@ public class Image3DView extends ListView {
      */
 
 
-    private static final float BASE_DEGREE = 15f;
+    private static final float BASE_DEGREE = 40f;
     /**
      * 旋转深度的基准值
      */

@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="red">#ff0000</color>
     <color name="line">#EFEFEF</color>
+    <color name="text">#febf9c</color>
+    <color name="view">#a3a4a4</color>
 </resources>

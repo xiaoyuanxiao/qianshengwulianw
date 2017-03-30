@@ -239,9 +239,7 @@
 
     </ScrollView>
     <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="#a3a4a4"/>
+       style="@style/view_adaress"/>
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -255,22 +253,22 @@
             android:text="首页" />
 
         <RadioButton
-            android:id="@+id/rb_main_union"
+            android:id="@+id/rb_main_beans"
             style="@style/tv_iv_setting"
             android:drawableTop="@mipmap/jd_03"
-            android:text="钱盛联盟" />
+            android:text="创业金豆" />
 
         <RadioButton
             android:id="@+id/rb_main_funtime"
             style="@style/tv_iv_setting"
             android:drawableTop="@mipmap/hb_03"
-            android:text="开心一刻" />
+            android:text="我的伙伴" />
 
         <RadioButton
-            android:id="@+id/rb_main_rankings"
+            android:id="@+id/rb_main_exit"
             style="@style/tv_iv_setting"
             android:drawableTop="@mipmap/wd_03"
-            android:text="排名榜" />
+            android:text="退出" />
     </RadioGroup>
 
 </LinearLayout>

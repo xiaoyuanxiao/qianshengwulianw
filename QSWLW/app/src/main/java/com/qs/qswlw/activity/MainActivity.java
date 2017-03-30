@@ -1,10 +1,11 @@
 package com.qs.qswlw.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ public class MainActivity extends BaseActivity {
             "test1", "test2", "test3",
             "test4"};
     ImageView iv_main_avater;
+    private View view;
+    private TextView tv_item_home_head;
 
     @Override
     Object initView() {
@@ -30,60 +33,67 @@ public class MainActivity extends BaseActivity {
     @Override
     void initfindviewByid() {
         imageSwitchView = (Image3DSwitchView) findViewById(R.id.image_switch_view);
-//        imageSwitchView.setOnImageSwitchListener(new Image3DSwitchView.OnImageSwitchListener() {
-//            @Override
-//            public void onImageSwitch(int currentImage) {
-//                // Log.d("TAG", "current image is " + currentImage);
-//            }
-//        });
-        imageSwitchView.setCurrentImage(1);
-        Image3DView image1 = (Image3DView) findViewById(R.id.image1);
-        TextView textView = new TextView(this);
-        textView.setText("全联盟让利金额排行榜");
-        image1.addHeaderView(textView);
-        image1.setBColor(Color.parseColor("#fff000"));
-        TextView textView2 = new TextView(this);
-        textView2.setText("查看全部排名");
-        image1.addFooterView(textView2);
-        Image3DView image2 = (Image3DView) findViewById(R.id.image2);
-        Image3DView image3 = (Image3DView) findViewById(R.id.image3);
-        Image3DView image4 = (Image3DView) findViewById(R.id.image4);
-        Image3DView image5 = (Image3DView) findViewById(R.id.image5);
-        Image3DView image6 = (Image3DView) findViewById(R.id.image6);
-        image1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
-        image2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
-        image3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
-        image4.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
-        image5.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
-        image6.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+        Image3DView list1 = (Image3DView) findViewById(R.id.list1);
+        Image3DView list2 = (Image3DView) findViewById(R.id.list2);
+        Image3DView list3 = (Image3DView) findViewById(R.id.list3);
+        Image3DView list4 = (Image3DView) findViewById(R.id.list4);
+        Image3DView list5 = (Image3DView) findViewById(R.id.list5);
+        Image3DView list6 = (Image3DView) findViewById(R.id.list6);
+        view = LayoutInflater.from(this).inflate(R.layout.item_home_head, null);
+        tv_item_home_head = (TextView) view.findViewById(R.id.tv_item_home_head);
         iv_main_avater = (ImageView) findViewById(R.id.iv_main_avater);
 
+
+        imageSwitchView.setCurrentImage(1);
+
+        tv_item_home_head.setText("全联盟让利金额排行榜");
+
+        list1.addHeaderView(view);
+        list1.setBColor(Color.parseColor("#b82140"));
+        list2.setBColor(Color.parseColor("#de2127"));
+        list3.setBColor(Color.parseColor("#f3c68b"));
+        list4.setBColor(Color.parseColor("#b82141"));
+        list5.setBColor(Color.parseColor("#f2989a"));
+        list6.setBColor(Color.parseColor("#cd2244"));
+        TextView textView2 = new TextView(this);
+        textView2.setText("查看全部排名");
+        list1.addFooterView(textView2);
+
+//        list1.setAdapter(new ArrayAdapter<String>(this, R.layout.item_home_content, listViewData));
+//        list2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+//        list3.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+//        list4.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+//        list5.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+//        list6.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, listViewData));
+        list1.setAdapter(new MyDataAdapter());
+        list2.setAdapter(new MyDataAdapter());
+        list3.setAdapter(new MyDataAdapter());
+        list4.setAdapter(new MyDataAdapter());
+        list5.setAdapter(new MyDataAdapter());
+        list6.setAdapter(new MyDataAdapter());
+
         TextView textView22 = new TextView(this);
-        textView22.setText("无敌低2222222222222");
-        image2.addHeaderView(textView22);
+        textView22.setText("联盟商家排行榜");
+        list2.addHeaderView(textView22);
 
 
         TextView textView3 = new TextView(this);
-        textView3.setText("无敌低33333333333");
-        image3.addHeaderView(textView3);
-        Bitmap bitmap2 = Bitmap.createBitmap(1, 1,
-                Bitmap.Config.ARGB_8888);
-        bitmap2.eraseColor(Color.parseColor("#00ff00"));
-        image2.setmBitmap(bitmap2);
+        textView3.setText("全联盟创业日值");
+        list3.addHeaderView(textView3);
 
         TextView textView4 = new TextView(this);
-        textView4.setText("无敌低44444444444");
-        image4.addHeaderView(textView4);
+        textView4.setText("创业天使创业排名榜");
+        list4.addHeaderView(textView4);
 
 
         TextView textView5 = new TextView(this);
-        textView5.setText("无敌低555555555555");
-        image5.addHeaderView(textView5);
+        textView5.setText("中国好产品排行榜");
+        list5.addHeaderView(textView5);
 
 
         TextView textView6 = new TextView(this);
-        textView6.setText("无敌低66666666666666666");
-        image6.addHeaderView(textView6);
+        textView6.setText("拼手气促销抽奖名单");
+        list6.addHeaderView(textView6);
 
 
     }
@@ -106,5 +116,35 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         imageSwitchView.clear();
+    }
+
+    private class MyDataAdapter extends BaseAdapter {
+        private String[] keys = {"前海公司", "飞腾公司", "前海公司", "飞腾公司", "飞腾公司"};
+        private String[] values = {"11111万", "22222万", "33333万", "44444万", "55555万"};
+
+        @Override
+        public int getCount() {
+            return keys.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return keys[i];
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            View inflate = View.inflate(MainActivity.this, R.layout.item_home_content, null);
+            TextView key = (TextView) inflate.findViewById(R.id.tv_item_home_content_left);
+            TextView value = (TextView) inflate.findViewById(R.id.tv_item_home_content_value);
+            key.setText(keys[i]);
+            value.setText(values[i]);
+            return inflate;
+        }
     }
 }
